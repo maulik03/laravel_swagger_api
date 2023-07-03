@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+  db:
+    image: postgres:latest
+    container_name: local_pgdb
+    network_mode: host
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: plans
+      POSTGRES_PASSWORD: Password2023!
+    volumes:
+      - local_pgdata:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    ports:
+      - "5000:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@plans.net
+      PGADMIN_DEFAULT_PASSWORD: Welcome2023!
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
+volumes:
+  local_pgdata:
+  pgadmin-data:
