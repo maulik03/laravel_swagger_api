@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('todo_list', function (Blueprint $table) {
-            $table->boolean('done')->default(false);
+            $table->boolean('is_done')->default(false);
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('todo_list', function (Blueprint $table) {
-            $table->dropColumn('done');
+            $table->dropColumn('is_done');
         });
     }
 };
