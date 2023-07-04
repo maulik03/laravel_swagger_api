@@ -53,7 +53,7 @@ class TodoListController extends Controller
      */
     public function show(Request $request, TodoList $todoList)
     {
-        $id = $request()->id;
+        $id = $request->id;
         $todo = $todoList::find($id);
         if (!empty($todo)) {
             return response()->json($todo);

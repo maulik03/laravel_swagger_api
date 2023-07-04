@@ -1,0 +1,123 @@
+openapi: 3.0.0
+info:
+  title: Plans API
+  description: Here goes description
+  version: 0.1.0
+
+servers:
+  - url: http://localhost:8000/api
+    description: local server
+  - url: http://producation.app/api
+    description: production server
+
+paths:
+  /todos:
+    get:
+      tags:
+        - todos
+      summary: Returns a list of todos.
+      responses:
+        '200': 
+          description: A JSON array of Todo List
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: object
+    post:
+      tags:
+        - todos
+      summary: Add a new task to the todo list
+      description: Add a new task to the todo list
+      operationId: store
+      requestBody:
+        description: Create a new task in the todo list
+        content:
+          application/json:
+            schema:
+              type: object
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+             application/json:
+              schema: 
+                type: array
+                items: 
+                  type: object
+        '405':
+          description: Invalid input
+  /todos/{todoId}:
+    get:
+      tags:
+        - todos
+      summary: Returns a todo task by id.
+      parameters:
+        - name: todoId
+          in: path
+          description: todo id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: A JSON object of Todo Task
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+    put:
+      tags:
+        - todos
+      summary: Update an Todo Task
+      parameters:
+        - name: todoId
+          in: path
+          description: todo id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Update an existent todo task
+        content:
+          application/json:
+            schema:
+              type: object
+        required: true
+      responses:
+        '200': 
+          description: A Todo Task Object
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: object
+    delete:
+      tags:
+        - todos
+      summary: Delete a todo task by id.
+      parameters:
+        - name: todoId
+          in: path
+          description: todo id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '202':
+          description: A JSON object of Todo Task
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+  
